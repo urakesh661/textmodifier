@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo -n "Please provide list: "
-read list
+echo -n "Please provide input file: "
+read file
 
-if [[ (-z $list) || (! -f $list) ]];then
+if [[ (-z $file) || (! -f $file) ]];then
 	echo "You did not provide a domain list or the location of file is invalid!"
 	exit
 fi
@@ -20,7 +20,7 @@ fi
 
 append_at_start=$at_start
 
-awk -v append_at_start=$append_at_start '{print append_at_start $0;}' $list > add_start.txt 
+awk -v append_at_start=$append_at_start '{print append_at_start $0;}' $file > add_start.txt 
 	
 }
 
@@ -36,7 +36,7 @@ fi
 
 append_at_end=$at_end
 
-awk -v append_at_end=$append_at_end '{print $0 append_at_end;}' $list > add_end.txt
+awk -v append_at_end=$append_at_end '{print $0 append_at_end;}' $file > add_end.txt
 
 }
 
@@ -54,6 +54,4 @@ case $choice in
 	2) append_end ;;
 	*) echo "You have entered wrong choice."
 esac
-
-
 
