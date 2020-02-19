@@ -40,8 +40,37 @@ awk -v append_at_end=$append_at_end '{print $0 append_at_end;}' $file > add_end.
 
 }
 
+filter_unique_records(){
+
+sort $file | uniq > filtered_list.txt
+
+}
+
+sort_file(){
+
+cat $file | awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- > sorted_file.txt
+
+}
+
+search(){
+
+echo -n "Please provide string you want to search: "
+read search_text
+
+if [[ (-z $search_text) ]];then
+	echo "You did not provide a string to search!"
+	exit
+fi
+
+grep -i $search_text $file > file.txt
+
+}
+
 echo "1. Append at start of the lines."
 echo "2. Append at the end of lines."
+echo "3. Remove duplicate records from file."
+echo "4. Sort file by line text length."
+echo "5. Word to be searched."
 
 echo
 echo -n "Choice: "
@@ -52,6 +81,8 @@ echo $choice
 case $choice in
 	1) append_start ;;
 	2) append_end ;;
+	3) filter_unique_records ;;
+	4) sort_file ;;
+	5) search ;;
 	*) echo "You have entered wrong choice."
 esac
-
