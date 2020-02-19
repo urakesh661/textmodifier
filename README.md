@@ -1,2 +1,11 @@
 # textmodifier
-The script can be used for text manipulation.User has the option of adding string at the start or end of each line of a file,the output will be generated in a new file.User can perform either of the option after selecting the corresponding choice.
+The script can be used for text manipulation.User can perform below mentioned operations on a text file:
+1. Append text at start of the lines.
+
+2. Append text at the end of lines.
+
+3. Remove duplicate records from file.
+
+4. Sort file by line text length.
+
+5. Search for a specific word in entire text file and save mathcing lines.
